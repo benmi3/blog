@@ -1,0 +1,26 @@
+
+image: denoland/deno:alpine
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - deno run --allow-read --allow-write --allow-net --allow-env ./build.ts
+  artifacts:
+    paths:
+      - .svelte-kit/output/
+
+deploy:
+  stage: deploy
+  script:
+    - mkdir -p public
+    - cp -r .svelte-kit/output/* public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - main  # Adjust this to your default branch
+
