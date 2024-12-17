@@ -24,3 +24,4 @@ vite.config.ts.timestamp-*
 # Lock
 bun.lockb
 deno.lock
+bun.lockb
