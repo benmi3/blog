@@ -2,8 +2,9 @@
 image: denoland/deno:alpine
 # Functions that should be executed before the build script is run
 before_script:
-  - mkdir .svelte-kit/output/
-  - deno install  --allow-scripts
+  - mkdir -p .svelte-kit/output/
+  - mkdir -p public
+  - deno install --allow-scripts
 pages:
   script:
     - deno run build
