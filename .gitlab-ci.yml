@@ -9,7 +9,7 @@ pages:
   script:
     - deno run build
     - cp -r .svelte-kit/output/* public/
-    - deno run preview
+    - deno run preview --host
   artifacts:
     paths:
       # The folder that contains the files to be exposed at the Page URL
