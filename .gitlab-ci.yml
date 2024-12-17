@@ -21,8 +21,6 @@ deploy:
   artifacts:
     paths:
       - public
-  only:
-    - main  # Adjust this to your default branch
   rules:
     # This ensures that only pushes to the default branch will trigger
     # a pages deploy
