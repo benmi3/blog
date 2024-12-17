@@ -1,30 +1,19 @@
+# The Docker image that will be used to build your app
 image: denoland/deno:alpine
-
-stages:
-  - build
-  - deploy
-
-build:
-  stage: build
+# Functions that should be executed before the build script is run
+before_script:
+  - mkdir .svelte-kit/output/
+  - deno install  --allow-scripts
+pages:
   script:
-    - deno install --allow-scripts
-    - deno run build #--allow-read --allow-write --allow-net --allow-env ./build.ts
-  artifacts:
-    paths:
-      - .svelte-kit/output/
-
-deploy:
-  stage: deploy
-  script:
-    - mkdir -p public
+    - deno run build
     - cp -r .svelte-kit/output/* public/
+    - deno run preview
   artifacts:
     paths:
+      # The folder that contains the files to be exposed at the Page URL
       - public
   rules:
     # This ensures that only pushes to the default branch will trigger
     # a pages deploy
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-
-
-
