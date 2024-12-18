@@ -20,19 +20,13 @@ RUN cd /temp/prod && bun install --frozen-lockfile --production
 FROM base AS prerelease
 COPY --from=install /temp/dev/node_modules node_modules
 COPY . .
-
+RUN mkdir -p public
 # [optional] tests & build
 ENV NODE_ENV=production
 # TODO: RUN bun test
-RUN bun run build
-
-# copy production dependencies and source code into final image
-FROM base AS release
-COPY --from=install /temp/prod/node_modules node_modules
-COPY --from=prerelease /usr/src/app/index.ts .
-COPY --from=prerelease /usr/src/app/package.json .
+RUN bun --bun run build
 
 # run the app
 #USER bun
-EXPOSE 5173/tcp
-ENTRYPOINT [ "bunx", "--bun" ,"vite", "--host" ]
+EXPOSE 3000/tcp
+ENTRYPOINT [ "bun", "./public/index.js" ]
