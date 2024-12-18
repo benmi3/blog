@@ -9,7 +9,7 @@ variables:
 
 build:
   stage: build
-  image: fedora:latest  # Use a base image that has Podman installed
+  image: quay.io/podman/stable
   script:
     - podman build -t ${PODMAN_REGISTRY}/${CI_PROJECT_PATH}:${IMAGE_TAG} .
 #    - podman push ${PODMAN_REGISTRY}/${CI_PROJECT_PATH}:${IMAGE_TAG}
