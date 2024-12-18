@@ -4,6 +4,6 @@ stages:
 build_image:
   stage: build
   script:
-    - podman build -t blog:latest -f Containerfile .
+    - docker build -t blog:latest
   only:
     - main  # Change this to your default branch if necessary
