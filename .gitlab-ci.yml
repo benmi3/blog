@@ -1,9 +1,21 @@
 stages:
   - build
+#  - deploy
 
-build_image:
+variables:
+  IMAGE_NAME: "benmiblog"
+  IMAGE_TAG: "latest"
+  PODMAN_REGISTRY: "registry.gitlab.com"
+
+build:
   stage: build
+  image: fedora:latest  # Use a base image that has Podman installed
   script:
-    - docker build -t blog:latest
-  only:
-    - main  # Change this to your default branch if necessary
+    - podman build -t ${PODMAN_REGISTRY}/${CI_PROJECT_PATH}:${IMAGE_TAG} .
+#    - podman push ${PODMAN_REGISTRY}/${CI_PROJECT_PATH}:${IMAGE_TAG}
+
+#deploy:
+#  stage: deploy
+#  script:
+#    - echo "Deploying ${PODMAN_REGISTRY}/${CI_PROJECT_PATH}:${IMAGE_TAG}"
+#    # Add your deployment steps here
