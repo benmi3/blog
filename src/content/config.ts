@@ -22,6 +22,6 @@ export const postsCollection = defineCollection({
 
 export const specCollection = defineCollection({})
 
-// export const collections = {
-//   posts: postsCollection,
-// }
+export const collections = {
+  posts: postsCollection,
+}
