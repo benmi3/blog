@@ -6,11 +6,12 @@ description: 'Read more about Markdown features in Fuwari'
 image: ''
 tags: [Demo, Example, Markdown, Fuwari]
 category: 'Examples'
-draft: false 
+draft: true
 ---
 
 ## GitHub Repository Cards
-You can add dynamic cards that link to GitHub repositories, on page load, the repository information is pulled from the GitHub API. 
+
+You can add dynamic cards that link to GitHub repositories, on page load, the repository information is pulled from the GitHub API.
 
 ::github{repo="Fabrizz/MMM-OnSpotify"}
 
@@ -82,3 +83,4 @@ This is a note with a custom title.
 > [!TIP]
 > The GitHub syntax is also supported.
 ```
+
